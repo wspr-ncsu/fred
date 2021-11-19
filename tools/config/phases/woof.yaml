@@ -1,0 +1,67 @@
+-
+  name: AndroidAPI
+  handler: org.sag.woof.phases.androidapi.AndroidAPIHandler
+  dependency-handlers: JimpleJar
+  root-path: woof-dir
+  out-paths: woof_android-api-db-file
+  dependency-paths: [lookup-output-paths: JimpleJar, woof_android-api-jar-file]
+  other-paths: null
+-
+  name: MessageHandler
+  handler: org.sag.woof.phases.messagehandlers.MessageHandlerHandler
+  dependency-handlers: JimpleJar
+  root-path: woof-dir
+  out-paths: woof_message-handler-db-file
+  dependency-paths: [lookup-output-paths: JimpleJar]
+  other-paths: null
+-
+  name: FileMethodsExcludedElements
+  handler: org.sag.woof.phases.filemethods.FileMethodsExcludedElementsHandler
+  dependency-handlers: [AndroidAPI, BinderServices, MessageHandler]
+  root-path: woof-dir
+  out-paths: woof_file-methods-excluded-elements-db-file
+  dependency-paths: [lookup-dependency-paths: AndroidAPI, lookup-output-paths: AndroidAPI, lookup-dependency-paths: BinderServices, lookup-output-paths: BinderServices, lookup-dependency-paths: MessageHandler, lookup-output-paths: MessageHandler, woof_file-methods-excluded-elements-file]
+  other-paths: null
+-
+  name: FileMethods
+  handler: org.sag.woof.phases.filemethods.FileMethodsHandler
+  dependency-handlers: FileMethodsExcludedElements
+  root-path: woof-dir
+  out-paths: [woof_file-methods-db-file, woof_file-methods-android-api-file, woof_file-methods-java-api-file]
+  dependency-paths: [lookup-dependency-paths: FileMethodsExcludedElements, lookup-output-paths: FileMethodsExcludedElements, woof_file-methods-java-api-indicator-file, woof_file-methods-native-file, woof_file-methods-java-api-file, woof_file-methods-android-api-file]
+  other-paths: debug_woof-file-methods-dir
+-
+  name: FileActionsExcludedElements
+  handler: org.sag.woof.phases.fileactions.FileActionsExcludedElementsHandler
+  dependency-handlers: [AndroidAPI, BinderServices, MessageHandler]
+  root-path: woof-dir
+  out-paths: woof_file-actions-excluded-elements-db-file
+  dependency-paths: [lookup-dependency-paths: AndroidAPI, lookup-output-paths: AndroidAPI, lookup-dependency-paths: BinderServices, lookup-output-paths: BinderServices, lookup-dependency-paths: MessageHandler, lookup-output-paths: MessageHandler, woof_file-actions-excluded-elements-file]
+  other-paths: null
+-
+  name: FileActionsCallGraph
+  handler: org.sag.woof.phases.fileactions.FileActionsCallGraphHandler
+  dependency-handlers: FileActionsExcludedElements
+  root-path: woof-dir
+  out-paths: null
+  dependency-paths: [lookup-dependency-paths: FileActionsExcludedElements, lookup-output-paths: FileActionsExcludedElements]
+  other-paths: null
+-
+  name: FileActionsVariedCallGraphAnalysis
+  handler: org.sag.woof.phases.variedcallgraphanalysis.VariedCallGraphAnalysisHandler
+  dependency-handlers: FileActionsCallGraph
+  root-path: woof-dir
+  out-paths: null
+  dependency-paths: [lookup-dependency-paths: FileActionsCallGraph, lookup-output-paths: FileActionsCallGraph]
+  other-paths: null
+  options:
+    ReachingGraphs: [path, woof_sinks-file, 'Read in the given file containing method sinks and output reaching graphs for all entry points that call these methods. The graphs contain only paths to these sinks and are in the .tgf format.']
+    DumpNative: [boolean, 'Dumps the native methods reachable from the entry points to files.']
+-
+  name: FileActions
+  handler: org.sag.woof.phases.fileactions.FileActionsHandler
+  dependency-handlers: [FileMethods, FileActionsCallGraph]
+  root-path: woof-dir
+  out-paths: woof_file-actions-db-file
+  dependency-paths: [lookup-dependency-paths: FileMethods, lookup-output-paths: FileMethods, lookup-dependency-paths: FileActionsCallGraph, lookup-output-paths: FileActionsCallGraph]
+  other-paths: null
