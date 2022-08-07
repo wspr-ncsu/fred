@@ -1,0 +1,64 @@
+# getInput_FredDir
+fred-dir: [work-dir, fred]
+# getInput_Fred_MessageHandlerDBFile
+fred_message-handler-db-file: [fred-dir, message_handler_db.xml]
+# getInput_Fred_AndroidAPIJarFile
+fred_android-api-jar-file: [fred-dir, android_api_in.jar]
+# getInput_AndroidAPIDBFile
+fred_android-api-db-file: [fred-dir, android_api_db.xml]
+# getInput_Fred_FileMethodsExcludedElementsFile
+fred_file-methods-excluded-elements-file: [fred-dir, file_methods_excluded_elements_in.txt]
+# getInput_Fred_FileMethodsExcludedElementsDBFile
+fred_file-methods-excluded-elements-db-file: [fred-dir, file_methods_excluded_elements_db.xml]
+# getInput_Fred_FileMethodsJavaAPIIndicatorFile
+fred_file-methods-java-api-indicator-file: [fred-dir, file_methods_java_api_indicator_in.txt]
+# getInput_Fred_FileMethodsNativeFile
+fred_file-methods-native-file: [fred-dir, file_methods_native_in.txt]
+# getInput_Fred_FileMethodsJavaAPIFile
+fred_file-methods-java-api-file: [fred-dir, file_methods_java_api_imd.txt]
+# getInput_Fred_FileMethodsAndroidAPIFile
+fred_file-methods-android-api-file: [fred-dir, file_methods_android_api_imd.txt]
+# getInput_Fred_FileMethodsDBFile
+fred_file-methods-db-file: [fred-dir, file_methods_db.xml]
+# getInput_Fred_FileActionsExcludedElementsFile
+fred_file-actions-excluded-elements-file: [fred-dir, file_actions_excluded_elements_in.txt]
+# getInput_Fred_FileActionsExcludedElementsDBFile
+fred_file-actions-excluded-elements-db-file: [fred-dir, file_actions_excluded_elements_db.xml]
+# getInput_Fred_FileActionsDBFile
+fred_file-actions-db-file: [fred-dir, file_actions_db.xml]
+# getInput_Fred_FilePathsDBFile
+fred_file-paths-db-file: [fred-dir, file_paths_db.xml]
+# getInput_Fred_SecuritySensitiveFilesDBFile
+fred_security-sensitive-files-db-file: [fred-dir, security_sensitive_files_db.xml]
+fred_sinks-file: [fred-dir, sinks.txt]
+
+fred_fred-dir: [fred-dir, fred]
+# getInput_Fred_MatchesAllDBFile
+fred_fred_matches-all-db-file: [fred_fred-dir, matches_all_db.xml]
+# getInput_Fred_MatchesDBFile
+fred_fred_matches-db-file: [fred_fred-dir, matches_db.xml]
+fred_fred_matches-no-db-file: [fred_fred-dir, matches_no_db.xml]
+# getInput_Fred_MatchesRemovedDBFile
+fred_fred_matches-removed-db-file: [fred_fred-dir, matches_removed_db.xml]
+# getInput_Fred_SystemMatchesDBFile
+fred_fred_system-matches-db-file: [fred_fred-dir, system_matches_db.xml]
+# getInput_Fred_ThirdPartyMatchesDBFile
+fred_fred_third-party-matches-db-file: [fred_fred-dir, third_party_matches_db.xml]
+# getInput_Fred_ThirdPartyRedelegationDBFile
+fred_fred_third-party-redelegation-db-file: [fred_fred-dir, third_party_redelegation_db.xml]
+# getInput_Fred_ThirdPartyNoRedelegationDBFile
+fred_fred_third-party-no-redelegation-db-file: [fred_fred-dir, third_party_no_redelegation_db.xml]
+# getInput_Fred_SystemRedelegationDBFile
+fred_fred_system-redelegation-db-file: [fred_fred-dir, system_redelegation_db.xml]
+# getInput_Fred_SystemNoRedelegationDBFile
+fred_fred_system-no-redelegation-db-file: [fred_fred-dir, system_no_redelegation_db.xml]
+
+
+# getInput_Fred_Analysis_OutDir
+debug_fred-dir: [debug-dir, fred]
+# getInput_Fred_Debug_FileMethodsDir
+debug_fred-file-methods-dir: [debug-dir, fred_file_methods]
+# getInput_Fred_Debug_FileActionsDir
+debug_fred-file-actions-dir: [debug-dir, fred_file_actions]
+debug_fred-eps-to-native-methods-dump-file: [debug-dir, fred_eps_to_native_methods_dump.txt]
+debug_fred-native-methods-from-eps-dump-file: [debug-dir, fred_native_methods_from_eps_dump.txt]

@@ -1,6 +1,0 @@
-name: Woof
-data-accessor: org.sag.woof.WoofDataAccessor
-phases: [JimpleJar, AndroidAPI, EntryPoints, BinderGroups, BinderServices, MessageHandler, FileMethodsExcludedElements, FileMethods, FileActionsExcludedElements, FileActionsCallGraph, FileActionsVariedCallGraphAnalysis, FileActions]
-options:
-  default:
-    FileActions: [enable, 'true']

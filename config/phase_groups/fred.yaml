@@ -1,0 +1,6 @@
+name: Fred
+data-accessor: org.sag.fred.FredDataAccessor
+phases: [JimpleJar, AndroidAPI, EntryPoints, BinderGroups, BinderServices, MessageHandler, FileMethodsExcludedElements, FileMethods, FileActionsExcludedElements, FileActionsCallGraph, FileActionsVariedCallGraphAnalysis, FileActions]
+options:
+  default:
+    FileActions: [enable, 'true']

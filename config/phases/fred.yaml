@@ -1,0 +1,67 @@
+-
+  name: AndroidAPI
+  handler: org.sag.fred.phases.androidapi.AndroidAPIHandler
+  dependency-handlers: JimpleJar
+  root-path: fred-dir
+  out-paths: fred_android-api-db-file
+  dependency-paths: [lookup-output-paths: JimpleJar, fred_android-api-jar-file]
+  other-paths: null
+-
+  name: MessageHandler
+  handler: org.sag.fred.phases.messagehandlers.MessageHandlerHandler
+  dependency-handlers: JimpleJar
+  root-path: fred-dir
+  out-paths: fred_message-handler-db-file
+  dependency-paths: [lookup-output-paths: JimpleJar]
+  other-paths: null
+-
+  name: FileMethodsExcludedElements
+  handler: org.sag.fred.phases.filemethods.FileMethodsExcludedElementsHandler
+  dependency-handlers: [AndroidAPI, BinderServices, MessageHandler]
+  root-path: fred-dir
+  out-paths: fred_file-methods-excluded-elements-db-file
+  dependency-paths: [lookup-dependency-paths: AndroidAPI, lookup-output-paths: AndroidAPI, lookup-dependency-paths: BinderServices, lookup-output-paths: BinderServices, lookup-dependency-paths: MessageHandler, lookup-output-paths: MessageHandler, fred_file-methods-excluded-elements-file]
+  other-paths: null
+-
+  name: FileMethods
+  handler: org.sag.fred.phases.filemethods.FileMethodsHandler
+  dependency-handlers: FileMethodsExcludedElements
+  root-path: fred-dir
+  out-paths: [fred_file-methods-db-file, fred_file-methods-android-api-file, fred_file-methods-java-api-file]
+  dependency-paths: [lookup-dependency-paths: FileMethodsExcludedElements, lookup-output-paths: FileMethodsExcludedElements, fred_file-methods-java-api-indicator-file, fred_file-methods-native-file, fred_file-methods-java-api-file, fred_file-methods-android-api-file]
+  other-paths: debug_fred-file-methods-dir
+-
+  name: FileActionsExcludedElements
+  handler: org.sag.fred.phases.fileactions.FileActionsExcludedElementsHandler
+  dependency-handlers: [AndroidAPI, BinderServices, MessageHandler]
+  root-path: fred-dir
+  out-paths: fred_file-actions-excluded-elements-db-file
+  dependency-paths: [lookup-dependency-paths: AndroidAPI, lookup-output-paths: AndroidAPI, lookup-dependency-paths: BinderServices, lookup-output-paths: BinderServices, lookup-dependency-paths: MessageHandler, lookup-output-paths: MessageHandler, fred_file-actions-excluded-elements-file]
+  other-paths: null
+-
+  name: FileActionsCallGraph
+  handler: org.sag.fred.phases.fileactions.FileActionsCallGraphHandler
+  dependency-handlers: FileActionsExcludedElements
+  root-path: fred-dir
+  out-paths: null
+  dependency-paths: [lookup-dependency-paths: FileActionsExcludedElements, lookup-output-paths: FileActionsExcludedElements]
+  other-paths: null
+-
+  name: FileActionsVariedCallGraphAnalysis
+  handler: org.sag.fred.phases.variedcallgraphanalysis.VariedCallGraphAnalysisHandler
+  dependency-handlers: FileActionsCallGraph
+  root-path: fred-dir
+  out-paths: null
+  dependency-paths: [lookup-dependency-paths: FileActionsCallGraph, lookup-output-paths: FileActionsCallGraph]
+  other-paths: null
+  options:
+    ReachingGraphs: [path, fred_sinks-file, 'Read in the given file containing method sinks and output reaching graphs for all entry points that call these methods. The graphs contain only paths to these sinks and are in the .tgf format.']
+    DumpNative: [boolean, 'Dumps the native methods reachable from the entry points to files.']
+-
+  name: FileActions
+  handler: org.sag.fred.phases.fileactions.FileActionsHandler
+  dependency-handlers: [FileMethods, FileActionsCallGraph]
+  root-path: fred-dir
+  out-paths: fred_file-actions-db-file
+  dependency-paths: [lookup-dependency-paths: FileMethods, lookup-output-paths: FileMethods, lookup-dependency-paths: FileActionsCallGraph, lookup-output-paths: FileActionsCallGraph]
+  other-paths: null
